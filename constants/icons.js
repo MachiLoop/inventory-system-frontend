@@ -53,6 +53,8 @@ import videoCamera from "../assets/icons/videoCamera.png";
 import message from "../assets/icons/message.png";
 import pin from "../assets/icons/pin.png";
 import pinFilled from "../assets/icons/pinFilled.png";
+import deleteIcon from "../assets/icons/delete.png";
+// import delete from "../assets/icons/delete.png";
 
 export default {
   add,
@@ -110,4 +112,5 @@ export default {
   message,
   pin,
   pinFilled,
+  deleteIcon,
 };

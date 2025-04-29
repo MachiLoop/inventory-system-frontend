@@ -7,6 +7,7 @@ module.exports = {
     extend: {
       colors: {
         bgLight: "#FFFFFF",
+        bgBlue: "rgba(0,122, 255,0.12)",
         info: "#B8B8B8",
         shadeBlack: "#121212",
         shadeWhite: "#FFFFFF",
@@ -14,6 +15,7 @@ module.exports = {
         contentSecondary: "#414141",
         contentDisabled: "#B8B8B8",
         contentPrimary: "#2A2A2A",
+        contentBlue: "rgb(0,122,255)",
         primary: {
           DEFAULT: "#08B783",
           900: "#005932",

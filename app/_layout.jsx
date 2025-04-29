@@ -38,6 +38,7 @@ const RootLayout = () => {
           name="index"
           options={{
             headerShown: false,
+            headerTintColor: "white",
           }}
         />
 

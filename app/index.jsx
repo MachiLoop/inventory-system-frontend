@@ -54,7 +54,7 @@ const Index = () => {
   // console.log(width, height);
 
   return (
-    <SafeAreaView className="px-4 flex-1 mt-12 justify-between">
+    <SafeAreaView className="px-4 flex-1 pt-12 justify-between bg-white">
       <View>
         <View className="gap-1">
           <Text className="text-3xl">Sign In Account</Text>
@@ -104,7 +104,7 @@ const Index = () => {
           label="Sign in"
           containerStyles="bg-primary-700 py-4 rounded-md mt-4"
           textStyles="text-center text-shadeWhite font-pmedium"
-          onPressHandler={() => router.push("/products")}
+          onPressHandler={() => router.push("/categories")}
         />
       </View>
     </SafeAreaView>
