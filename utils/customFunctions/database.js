@@ -48,7 +48,7 @@ export const getCategories = async () => {
 
   try {
     response = await axios.get(
-      "http://192.168.212.20:8080/category/fetch-categories",
+      "http://192.168.221.20:8080/category/fetch-categories",
       {
         headers: {
           Authorization: `Bearer ${token}`,
