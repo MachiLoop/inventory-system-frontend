@@ -1,34 +1,11 @@
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-export const registerUser = async (fullName, email, password) => {
-  let response;
-  // console.log("Hi");
-  try {
-    response = await axios.post("http://192.168.212.20:8080/auth/sign-up", {
-      // response = await axios.post("http://localhost:8080/auth/sign-up", {
-      fullName: fullName,
-      email: email,
-      password: password,
-    });
-
-    if (!response.ok) {
-      console.log(response.status);
-    }
-
-    return response;
-  } catch (error) {
-    // console.log(error.response.data.errors[0].message);
-    // console.log(error.response.data);
-    return error.response;
-  }
-};
-
 export const loginUser = async (email, password) => {
   let response;
 
   try {
-    response = await axios.post("http://192.168.212.20:8080/auth/login", {
+    response = await axios.post("http://192.168.221.20:8080/auth/login", {
       email: email,
       password: password,
     });
@@ -64,17 +41,20 @@ export const bookTrip = async (tripData) => {
   }
 };
 
-export const getTrips = async () => {
+export const getCategories = async () => {
   const token = await AsyncStorage.getItem("authToken");
 
   let response;
 
   try {
-    response = await axios.get("http://192.168.212.20:8080/trip/bookings", {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    response = await axios.get(
+      "http://192.168.212.20:8080/category/fetch-categories",
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
 
     console.log(response);
 
