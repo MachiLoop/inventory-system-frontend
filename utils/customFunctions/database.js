@@ -1,11 +1,13 @@
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
+const base_url = "http://192.168.99.20:8080";
+
 export const loginUser = async (email, password) => {
   let response;
 
   try {
-    response = await axios.post("http://192.168.221.20:8080/auth/login", {
+    response = await axios.post(`${base_url}/auth/login`, {
       email: email,
       password: password,
     });
@@ -25,15 +27,11 @@ export const bookTrip = async (tripData) => {
   let response;
 
   try {
-    response = await axios.post(
-      "http://192.168.212.20:8080/trip/book",
-      tripData,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
+    response = await axios.post(`${base_url}/trip/book`, tripData, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
 
     return response;
   } catch (error) {
@@ -47,14 +45,11 @@ export const getCategories = async () => {
   let response;
 
   try {
-    response = await axios.get(
-      "http://192.168.221.20:8080/category/fetch-categories",
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
+    response = await axios.get(`${base_url}/category/fetch-categories`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
 
     console.log(response);
 

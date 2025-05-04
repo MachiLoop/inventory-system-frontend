@@ -54,6 +54,7 @@ import message from "../assets/icons/message.png";
 import pin from "../assets/icons/pin.png";
 import pinFilled from "../assets/icons/pinFilled.png";
 import deleteIcon from "../assets/icons/delete.png";
+import edit from "../assets/icons/edit.png";
 // import delete from "../assets/icons/delete.png";
 
 export default {
@@ -113,4 +114,5 @@ export default {
   pin,
   pinFilled,
   deleteIcon,
+  edit,
 };
