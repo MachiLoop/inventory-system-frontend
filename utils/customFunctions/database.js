@@ -58,3 +58,27 @@ export const getCategories = async () => {
     return error.response;
   }
 };
+
+export const addCategory = async (categoryData) => {
+  const token = await AsyncStorage.getItem("authToken");
+
+  let response;
+
+  try {
+    response = await axios.post(
+      `${base_url}/category/add-category`,
+      categoryData,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    console.log(response);
+
+    return response;
+  } catch (error) {
+    return error.response;
+  }
+};

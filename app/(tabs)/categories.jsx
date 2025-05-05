@@ -13,7 +13,10 @@ import { useRouter } from "expo-router";
 import React, { useCallback, useState } from "react";
 import TextInputForm from "../../components/TextInputForm";
 import CustomButton from "../../components/customButton";
-import { getCategories } from "../../utils/customFunctions/database";
+import {
+  addCategory,
+  getCategories,
+} from "../../utils/customFunctions/database";
 import ItemCard from "../../components/itemCard";
 import { useFocusEffect } from "expo-router";
 import CategoryFormModal from "../../components/categoryFormModal";
@@ -55,12 +58,16 @@ const categories = () => {
   const handleFormSubmit = async (data) => {
     try {
       if (editingCategory) {
-        //edit the category
         console.log(data);
       } else {
         //post the category
-        console.log("submitting new");
+        const response = await addCategory(data);
+        console.log("response.data" + response.data);
+
+        //handle response statusCodes
       }
+      await fetchCategories();
+      setModalVisible(false);
     } catch (err) {
       console.error("submit error: ", err.message);
     }

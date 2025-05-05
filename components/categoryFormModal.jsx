@@ -24,7 +24,6 @@ const CategoryFormModal = ({
   const handleSubmit = () => {
     if (!name.trim() || !imageUrl.trim()) return;
     handleFormSubmit({ name, imageUrl });
-    onClose();
   };
 
   return (
