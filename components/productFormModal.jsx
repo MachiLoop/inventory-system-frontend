@@ -30,22 +30,27 @@ const ProductFormModal = ({
 
   useEffect(() => {
     if (editingProduct) {
+      console.log(editingProduct);
       setFormData({
         name: editingProduct.name || "",
-        imageUrl: editingProduct.imageUrl || "",
+        description: editingProduct.description || "",
+        weight: editingProduct.weight || "",
+        color: editingProduct.color || "",
         quantity: editingProduct.quantity || "",
         price: editingProduct.price || "",
-        color: editingProduct.color || "",
-        weight: editingProduct.weight || "",
+        imageUrl: editingProduct.imageUrl || "",
+        lowStockThreshold: editingProduct.lowStockThreshold || "",
       });
     } else {
       setFormData({
         name: "",
-        imageUrl: "",
+        description: "",
+        weight: "",
+        color: "",
         quantity: "",
         price: "",
-        color: "",
-        weight: "",
+        imageUrl: "",
+        lowStockThreshold: "",
       });
     }
   }, [editingProduct]);
@@ -100,11 +105,11 @@ const ProductFormModal = ({
               inputFieldStyles="flex-1"
             />
             <TextInputForm
-              label="Weight(optional)"
+              label="Weight in kg(optional)"
               title="weight"
-              value={formData.weight}
+              value={String(formData.weight)}
               handleChangeText={(val) => handleChange("weight", val)}
-              placeholder=""
+              placeholder="e.g 0.5, 1, 2,..."
               labelStyles="font-regular"
               inputContainerStyles="bg-gray-100 rounded-md flex-row items-center justify-between px-4 mt-1 flex-1"
               containerStyles="w-full h-20"
@@ -126,7 +131,7 @@ const ProductFormModal = ({
                 editingProduct ? editingProduct.quantity : 0
               })`}
               title="quantity"
-              value={formData.quantity}
+              value={String(formData.quantity)}
               handleChangeText={(val) => handleChange("quantity", val)}
               placeholder=""
               labelStyles="font-regular"
@@ -137,7 +142,7 @@ const ProductFormModal = ({
             <TextInputForm
               label="Price"
               title="price"
-              value={formData.price}
+              value={String(formData.price)}
               handleChangeText={(val) => handleChange("price", val)}
               placeholder=""
               labelStyles="font-regular"
@@ -148,7 +153,7 @@ const ProductFormModal = ({
             <TextInputForm
               label="Category"
               title="category"
-              value={formData.category}
+              value={String(formData.category)}
               handleChangeText={(val) => handleChange("category", val)}
               placeholder=""
               labelStyles="font-regular"
@@ -170,7 +175,7 @@ const ProductFormModal = ({
             <TextInputForm
               label="Low stock threshold"
               title="low stock threshold"
-              value={formData.lowStockThreshold}
+              value={String(formData.lowStockThreshold)}
               handleChangeText={(val) => handleChange("lowStockThreshold", val)}
               placeholder=""
               labelStyles="font-regular"

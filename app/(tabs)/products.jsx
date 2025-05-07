@@ -85,7 +85,7 @@ const product = () => {
   };
 
   const handleEditProduct = (product) => {
-    // console.log(category);
+    console.log("product" + product);
     setEditingProduct(product);
     setModalVisible(true);
   };
