@@ -22,8 +22,11 @@ const CategoryFormModal = ({
   }, [editingCategory]);
 
   const handleSubmit = () => {
-    if (!name.trim() || !imageUrl.trim()) return;
-    handleFormSubmit({ name, imageUrl });
+    if (!name.trim()) return;
+    handleFormSubmit({
+      name,
+      imageUrl,
+    });
   };
 
   return (

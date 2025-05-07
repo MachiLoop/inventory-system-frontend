@@ -22,7 +22,7 @@ const Index = () => {
   const router = useRouter();
 
   const handleLogin = async () => {
-    console.log("hello");
+    // console.log("hello");
     if (!form.email || !form.password) {
       showToast("All fields are required", "danger");
       return;
@@ -30,10 +30,10 @@ const Index = () => {
 
     const response = await loginUser(form.email, form.password);
 
-    console.log(response.status);
+    // console.log(response.status);
     if (response.status == 400 || response.status == 401) {
       if (response.data.errors) {
-        console.log("hello");
+        // console.log("hello");
         setErrors(() => {
           return response.data.errors.reduce((acc, { field, message }) => {
             if (!acc[field]) {
@@ -47,7 +47,7 @@ const Index = () => {
       }
     } else if ((response.status = 200)) {
       const authToken = await AsyncStorage.getItem("authToken");
-      console.log("Retrieved token:", authToken);
+      // console.log("Retrieved token:", authToken);
       showToast("Login successful", "success");
       router.replace("/products");
     }

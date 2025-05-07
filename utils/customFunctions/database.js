@@ -1,7 +1,7 @@
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const base_url = "http://192.168.99.20:8080";
+const base_url = "http://192.168.236.20:8080";
 
 export const loginUser = async (email, password) => {
   let response;
@@ -51,7 +51,7 @@ export const getCategories = async () => {
       },
     });
 
-    console.log(response);
+    // console.log(response);
 
     return response;
   } catch (error) {
@@ -75,7 +75,30 @@ export const addCategory = async (categoryData) => {
       }
     );
 
-    console.log(response);
+    // console.log(response);
+
+    return response;
+  } catch (error) {
+    return error.response;
+  }
+};
+export const editCategory = async (categoryData, categoryId) => {
+  const token = await AsyncStorage.getItem("authToken");
+
+  let response;
+
+  try {
+    response = await axios.patch(
+      `${base_url}/category/edit/${categoryId}`,
+      categoryData,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    // console.log(response);
 
     return response;
   } catch (error) {

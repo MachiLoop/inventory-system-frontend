@@ -15,6 +15,7 @@ import TextInputForm from "../../components/TextInputForm";
 import CustomButton from "../../components/customButton";
 import {
   addCategory,
+  editCategory,
   getCategories,
 } from "../../utils/customFunctions/database";
 import ItemCard from "../../components/itemCard";
@@ -34,7 +35,7 @@ const categories = () => {
     setLoading(true);
     const response = await getCategories();
 
-    console.log("data: " + response.data.categories[1].name);
+    // console.log("data: " + response.data.categories[1].name);
 
     if ((response.status = 201)) {
       setCategories(response.data.categories);
@@ -55,16 +56,23 @@ const categories = () => {
     setModalVisible(true);
   };
 
-  const handleFormSubmit = async (data) => {
+  const handleFormSubmit = async (dataReceived) => {
+    //TOFIX
+    const data = dataReceived.imageUrl
+      ? { name: dataReceived.name, imageUrl: dataReceived.imageUrl }
+      : { name: dataReceived.name };
     try {
       if (editingCategory) {
         console.log(data);
+        const response = await editCategory(data, editingCategory._id);
+
+        //TODO: handle response statusCodes
       } else {
         //post the category
         const response = await addCategory(data);
-        console.log("response.data" + response.data);
+        // console.log("response.data" + response.data);
 
-        //handle response statusCodes
+        //TODO: handle response statusCodes
       }
       await fetchCategories();
       setModalVisible(false);
@@ -74,7 +82,7 @@ const categories = () => {
   };
 
   const handleEditCategory = (category) => {
-    console.log(category);
+    // console.log(category);
     setEditingCategory(category);
     setModalVisible(true);
   };

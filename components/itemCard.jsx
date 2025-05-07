@@ -2,6 +2,9 @@ import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
 import { icons, images } from "../constants";
 import React from "react";
 
+// const placeholderImage =
+//   "https://media.istockphoto.com/id/1360261804/vector/no-image-photo-template-on-gray-background.jpg?s=612x612&w=0&k=20&c=jR8gH9OmiRzSKZ3bIXsVfh161iuOrjfhqDpHTlTRFr4=";
+
 const ItemCard = ({ item, handleEditCategory }) => {
   return (
     <View className="flex-row justify-between items-center border-neutral-500 mb-4 p-2 gap-4 ">
