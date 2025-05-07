@@ -106,6 +106,7 @@ const Index = () => {
           containerStyles="bg-primary-700 py-4 rounded-md mt-4"
           textStyles="text-center text-shadeWhite font-pmedium"
           onPressHandler={handleLogin}
+          // onPressHandler={() => router.push("/products")}
         />
       </View>
     </SafeAreaView>

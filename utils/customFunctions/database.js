@@ -59,6 +59,27 @@ export const getCategories = async () => {
   }
 };
 
+export const getProducts = async () => {
+  console.log("getProducts");
+  const token = await AsyncStorage.getItem("authToken");
+
+  let response;
+
+  try {
+    response = await axios.get(`${base_url}/product/fetch-products`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    // console.log(response);
+
+    return response;
+  } catch (error) {
+    return error.response;
+  }
+};
+
 export const addCategory = async (categoryData) => {
   const token = await AsyncStorage.getItem("authToken");
 
