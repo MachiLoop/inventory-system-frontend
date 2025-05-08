@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { View, Text } from "react-native";
 import { ToastProvider } from "react-native-toast-notifications";
 import React from "react";
+import { AppProvider } from "../context/AppContexts";
 import "../global.css";
 
 SplashScreen.preventAutoHideAsync();
@@ -32,24 +33,26 @@ const RootLayout = () => {
   }
 
   return (
-    <ToastProvider>
-      <Stack>
-        <Stack.Screen
-          name="index"
-          options={{
-            headerShown: false,
-            headerTintColor: "white",
-          }}
-        />
+    <AppProvider>
+      <ToastProvider>
+        <Stack>
+          <Stack.Screen
+            name="index"
+            options={{
+              headerShown: false,
+              headerTintColor: "white",
+            }}
+          />
 
-        <Stack.Screen
-          name="(tabs)"
-          options={{
-            headerShown: false,
-          }}
-        />
-      </Stack>
-    </ToastProvider>
+          <Stack.Screen
+            name="(tabs)"
+            options={{
+              headerShown: false,
+            }}
+          />
+        </Stack>
+      </ToastProvider>
+    </AppProvider>
   );
 };
 

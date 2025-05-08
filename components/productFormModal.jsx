@@ -30,7 +30,7 @@ const ProductFormModal = ({
 
   useEffect(() => {
     if (editingProduct) {
-      console.log(editingProduct);
+      console.log(editingProduct.category);
       setFormData({
         name: editingProduct.name || "",
         description: editingProduct.description || "",

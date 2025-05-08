@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import { useContext } from "react";
 import { images, icons } from "../../constants";
 import { useRouter } from "expo-router";
 import React, { useCallback, useState } from "react";
@@ -21,10 +22,12 @@ import {
 import ItemCard from "../../components/itemCard";
 import { useFocusEffect } from "expo-router";
 import CategoryFormModal from "../../components/categoryFormModal";
+import { AppContext } from "../../context/AppContexts";
 
 const categories = () => {
   const [searchTerm, setSearchTerm] = useState("");
-  const [categories, setCategories] = useState([]);
+  // const [categories, setCategories] = useState([]);
+  const { categories, setCategories } = useContext(AppContext);
   const [loading, setLoading] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
   const [editingCategory, setEditingCategory] = useState(null);
@@ -39,9 +42,9 @@ const categories = () => {
 
     if ((response.status = 201)) {
       setCategories(response.data.categories);
-      // categories.forEach((category) => {
-      //   console.log(category.name);
-      // });
+      categories.forEach((category) => {
+        console.log(category.name);
+      });
     } else {
       showToast(
         response.data.message || "Failed to fetch categories",
