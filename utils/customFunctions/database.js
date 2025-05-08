@@ -103,6 +103,30 @@ export const addCategory = async (categoryData) => {
     return error.response;
   }
 };
+
+export const addProduct = async (productData) => {
+  const token = await AsyncStorage.getItem("authToken");
+
+  let response;
+
+  try {
+    response = await axios.post(
+      `${base_url}/product/add-product`,
+      productData,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    // console.log(response);
+
+    return response;
+  } catch (error) {
+    return error.response;
+  }
+};
 export const editCategory = async (categoryData, categoryId) => {
   const token = await AsyncStorage.getItem("authToken");
 

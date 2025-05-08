@@ -59,11 +59,10 @@ const product = () => {
     setModalVisible(true);
   };
 
-  const handleFormSubmit = async (dataReceived) => {
-    //TOFIX
-    // const data = dataReceived.imageUrl
-    //   ? { name: dataReceived.name, imageUrl: dataReceived.imageUrl }
-    //   : { name: dataReceived.name };
+  const handleFormSubmit = async (data) => {
+    if (!data.imageUrl) {
+      ({ imageUrl, ...data } = data);
+    }
     try {
       if (editingProduct) {
         console.log(data);

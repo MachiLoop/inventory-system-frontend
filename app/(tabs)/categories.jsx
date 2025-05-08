@@ -27,32 +27,18 @@ import { AppContext } from "../../context/AppContexts";
 const categories = () => {
   const [searchTerm, setSearchTerm] = useState("");
   // const [categories, setCategories] = useState([]);
-  const { categories, setCategories } = useContext(AppContext);
-  const [loading, setLoading] = useState(false);
+  const {
+    categories,
+    setCategories,
+    loadingCategories,
+    setLoadingCategories,
+    fetchCategories,
+  } = useContext(AppContext);
+  // const [loading, setLoading] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
   const [editingCategory, setEditingCategory] = useState(null);
 
   const router = useRouter();
-
-  const fetchCategories = async () => {
-    setLoading(true);
-    const response = await getCategories();
-
-    // console.log("data: " + response.data.categories[1].name);
-
-    if ((response.status = 201)) {
-      setCategories(response.data.categories);
-      categories.forEach((category) => {
-        console.log(category.name);
-      });
-    } else {
-      showToast(
-        response.data.message || "Failed to fetch categories",
-        "danger"
-      );
-    }
-    setLoading(false);
-  };
 
   const handleAddCategory = () => {
     setEditingCategory(null);
@@ -90,15 +76,6 @@ const categories = () => {
     setModalVisible(true);
   };
 
-  // useEffect(() => {
-  //   fetchTrips();
-  // }, []);
-  useFocusEffect(
-    useCallback(() => {
-      fetchCategories(); // 👈 your existing function to fetch all trips
-    }, [])
-  );
-
   const filteredCategories = categories.filter((category) =>
     category.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
@@ -109,7 +86,7 @@ const categories = () => {
 
   return (
     <>
-      {loading ? (
+      {loadingCategories ? (
         <ActivityIndicator size="large" color="#0000ff" />
       ) : (
         <View className="px-4 bg-white flex-1">
@@ -129,7 +106,7 @@ const categories = () => {
             />
           </View>
 
-          {categories.length > 0 ? (
+          {filteredCategories.length > 0 ? (
             <FlatList
               data={filteredCategories}
               showsVerticalScrollIndicator={false}
@@ -138,9 +115,7 @@ const categories = () => {
               contentContainerStyle={{ marginTop: 16 }}
             />
           ) : (
-            <Text className="flex-1 mt-8">
-              No category found. Click the button below to add a category
-            </Text>
+            <Text className="flex-1 mt-8">No category found</Text>
           )}
 
           <CustomButton
