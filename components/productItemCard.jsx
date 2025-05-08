@@ -2,30 +2,39 @@ import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
 import { icons, images } from "../constants";
 import React from "react";
 
-// const placeholderImage =
-//   "https://media.istockphoto.com/id/1360261804/vector/no-image-photo-template-on-gray-background.jpg?s=612x612&w=0&k=20&c=jR8gH9OmiRzSKZ3bIXsVfh161iuOrjfhqDpHTlTRFr4=";
-
 const ProductItemCard = ({ item, handleEditProduct }) => {
   return (
-    <View className="flex-row justify-between items-center border-neutral-500 mb-4 p-2 gap-4 ">
-      <View className="flex-row items-center gap-2 flex-1">
-        <Image source={{ uri: item.imageUrl }} style={styles.logo} />
-        <Text className="capitalize ">{item.name}</Text>
+    <View
+      style={styles.productCard}
+      className=" mb-4 border-2 border-gray-100 pb-2 justify-between rounded-xl
+      "
+    >
+      <View className="mb-1">
+        <Image
+          source={{ uri: item.imageUrl }}
+          style={styles.logo}
+          resizeMode="cover"
+        />
+        <View className="px-2">
+          <Text className="capitalize font-psemibold">{item.name}</Text>
+          <View className="mb-2">
+            <Text>Qty: {item.quantity}</Text>
+            {item.weight && <Text>Weight: {item.weight}</Text>}
+            {item.color && <Text>Color: {item.color}</Text>}
+          </View>
+          <Text className="font-psemibold">N{item.price}.00</Text>
+        </View>
       </View>
-      <View className="flex-row gap-4 items-center">
-        <TouchableOpacity className="bg-bgBlue px-4 rounded-full">
-          <Text className="text-xl text-contentBlue">view</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity onPress={() => handleEditProduct(item)}>
-          <Image source={icons.edit} className="w-6 h-6" tintColor="black" />
-        </TouchableOpacity>
+      <View className="flex-row justify-center gap-6 items-center">
         <TouchableOpacity>
           <Image
             source={icons.deleteIcon}
-            className="w-6 h-6"
+            className="w-4 h-4"
             tintColor="black"
           />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => handleEditProduct(item)}>
+          <Image source={icons.edit} className="w-4 h-4" tintColor="black" />
         </TouchableOpacity>
       </View>
     </View>
@@ -34,8 +43,11 @@ const ProductItemCard = ({ item, handleEditProduct }) => {
 
 const styles = StyleSheet.create({
   logo: {
-    width: 64,
-    height: 64,
+    width: "100%",
+    height: 100,
+  },
+  productCard: {
+    width: "48%",
   },
 });
 

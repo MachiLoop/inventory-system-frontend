@@ -164,6 +164,11 @@ const product = () => {
                     keyExtractor={(item) => item._id}
                     renderItem={renderProduct}
                     scrollEnabled={false}
+                    numColumns={2}
+                    columnWrapperStyle={{
+                      justifyContent: "space-between",
+                      // gap: 2,
+                    }}
                   />
                 )}
               </View>
