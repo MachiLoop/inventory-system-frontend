@@ -143,25 +143,32 @@ const product = () => {
             />
           </View>
 
-          {groupedProducts.map((group, index) => (
-            <View key={group.categoryId || index}>
-              <TouchableOpacity
-                onPress={() => toggleExpand(index)}
-                style={styles.header}
-              >
-                <Text style={styles.headerText}>{group.category}</Text>
-                <Text>{group.expanded ? "▲" : "▼"}</Text>
-              </TouchableOpacity>
+          <ScrollView
+            contentContainerStyle={{ paddingBottom: 16 }}
+            style={{ flex: 1 }}
+            showsVerticalScrollIndicator={false}
+          >
+            {groupedProducts.map((group, index) => (
+              <View key={group.categoryId || index}>
+                <TouchableOpacity
+                  onPress={() => toggleExpand(index)}
+                  style={styles.header}
+                >
+                  <Text style={styles.headerText}>{group.category}</Text>
+                  <Text>{group.expanded ? "▲" : "▼"}</Text>
+                </TouchableOpacity>
 
-              {group.expanded && (
-                <FlatList
-                  data={group.products}
-                  keyExtractor={(item) => item._id}
-                  renderItem={renderProduct}
-                />
-              )}
-            </View>
-          ))}
+                {group.expanded && (
+                  <FlatList
+                    data={group.products}
+                    keyExtractor={(item) => item._id}
+                    renderItem={renderProduct}
+                    scrollEnabled={false}
+                  />
+                )}
+              </View>
+            ))}
+          </ScrollView>
 
           <CustomButton
             label="Add new product"

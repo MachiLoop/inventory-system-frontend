@@ -175,7 +175,7 @@ const ProductFormModal = ({
               label="Image Url"
               title="imageUrl"
               value={formData.imageUrl}
-              handleChangeText={(val) => handleChange("imageurl", val)}
+              handleChangeText={(val) => handleChange("imageUrl", val)}
               placeholder=""
               labelStyles="font-regular"
               inputContainerStyles="bg-gray-100 rounded-md flex-row items-center justify-between px-4 mt-1 flex-1"
