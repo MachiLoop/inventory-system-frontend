@@ -60,17 +60,26 @@ const product = () => {
   };
 
   const handleFormSubmit = async (data) => {
+    console.log(data);
     if (!data.imageUrl) {
       ({ imageUrl, ...data } = data);
     }
+    if (!data.lowStockThreshold) {
+      delete data.lowStockThreshold;
+      // ({ lowStockThreshold, ...data } = data);
+    }
+    if (!data.description) {
+      delete data.description;
+      // ({ description, ...data } = data);
+    }
     try {
       if (editingProduct) {
-        console.log(data);
+        // console.log(data);
         const response = await editProduct(data, editingProduct._id);
 
         //TODO: handle response statusCodes
       } else {
-        //post the category
+        //post the product
         const response = await addProduct(data);
         // console.log("response.data" + response.data);
 

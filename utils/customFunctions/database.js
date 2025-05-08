@@ -150,3 +150,27 @@ export const editCategory = async (categoryData, categoryId) => {
     return error.response;
   }
 };
+
+export const editProduct = async (productData, productId) => {
+  const token = await AsyncStorage.getItem("authToken");
+
+  let response;
+
+  try {
+    response = await axios.patch(
+      `${base_url}/product/edit/${productId}`,
+      productData,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    // console.log(response);
+
+    return response;
+  } catch (error) {
+    return error.response;
+  }
+};

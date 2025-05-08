@@ -115,11 +115,11 @@ const ProductFormModal = ({
               inputFieldStyles="flex-1"
             />
             <TextInputForm
-              label="Weight in kg(optional)"
+              label="Weight/Volume in kg(optional)"
               title="weight"
               value={String(formData.weight)}
               handleChangeText={(val) => handleChange("weight", val)}
-              placeholder="e.g 0.5, 1, 2,..."
+              placeholder="e.g 0.2kg, 1 litre..."
               labelStyles="font-regular"
               inputContainerStyles="bg-gray-100 rounded-md flex-row items-center justify-between px-4 mt-1 flex-1"
               containerStyles="w-full h-20"
