@@ -55,15 +55,15 @@ const Index = () => {
   // console.log(width, height);
 
   return (
-    <SafeAreaView className="px-4 flex-1 pt-12 justify-between bg-white">
-      <View>
-        <View className="gap-1">
+    <SafeAreaView className="flex-1 justify-between bg-white">
+      <View className="justify-center items-center flex-1 ">
+        <View className="gap-1 items-center">
           <Text className="text-3xl">Sign In Account</Text>
           <Text className="text-neutral-700">
             Please login with registered account
           </Text>
         </View>
-        <View className="mt-10 gap-6">
+        <View className="mt-10 gap-4 w-10/12 ">
           <View>
             <TextInputForm
               title="Email"
@@ -75,7 +75,9 @@ const Index = () => {
               }}
               placeholder="Enter your email"
               labelStyles="font-psemibold"
-              inputContainerStyles="border-2 border-neutral-200 rounded-md flex-row items-center justify-between px-2"
+              inputContainerStyles="bg-gray-100 border-2 border-neutral-200 rounded-md flex-row items-center justify-between px-2
+              "
+              containerStyles="w-full h-20"
               inputFieldStyles="flex-1"
             />
             {errors?.email && (
@@ -93,7 +95,7 @@ const Index = () => {
               }}
               placeholder="Enter your password"
               labelStyles="font-psemibold"
-              inputContainerStyles="border-2 border-neutral-200 rounded-md flex-row items-center justify-between px-2"
+              inputContainerStyles="bg-gray-100 border-2 border-neutral-200 rounded-md flex-row items-center justify-between px-2"
               inputFieldStyles="flex-1"
             />
             {errors?.password && (
@@ -101,12 +103,18 @@ const Index = () => {
             )}
           </View>
         </View>
-        <CustomButton
+        {/* <CustomButton
           label="Sign in"
           containerStyles="bg-primary-700 py-4 rounded-md mt-4"
           textStyles="text-center text-shadeWhite font-pmedium"
           onPressHandler={handleLogin}
           // onPressHandler={() => router.push("/products")}
+        /> */}
+        <CustomButton
+          label="Sign in"
+          containerStyles="bg-contentBlue py-4 rounded-md mb-8 mt-6 w-10/12"
+          textStyles="text-center text-shadeWhite font-pmedium"
+          onPressHandler={() => handleLogin()}
         />
       </View>
     </SafeAreaView>

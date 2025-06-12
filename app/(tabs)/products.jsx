@@ -22,7 +22,7 @@ import ProductItemCard from "../../components/productItemCard";
 import { useFocusEffect } from "expo-router";
 import ProductFormModal from "../../components/productFormModal";
 
-const product = () => {
+const Product = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [groupedProducts, setGroupedProducts] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -149,12 +149,14 @@ const product = () => {
             showsVerticalScrollIndicator={false}
           >
             {groupedProducts.map((group, index) => (
-              <View key={group.categoryId || index}>
+              <View key={group.categoryId || index} className="mb-2">
                 <TouchableOpacity
                   onPress={() => toggleExpand(index)}
-                  style={styles.header}
+                  className="flex flex-row  justify-between items-center"
                 >
-                  <Text style={styles.headerText}>{group.category}</Text>
+                  <Text className="text-xl capitalize flex-1 font-psemibold">
+                    {group.category}
+                  </Text>
                   <Text>{group.expanded ? "▲" : "▼"}</Text>
                 </TouchableOpacity>
 
@@ -195,6 +197,6 @@ const product = () => {
   );
 };
 
-export default product;
+export default Product;
 
 const styles = StyleSheet.create({});

@@ -11,6 +11,7 @@ export const AppProvider = ({ children }) => {
   const fetchCategories = async () => {
     try {
       setLoadingCategories(true); // Start loading
+      //FIXME: in initial login, there is no token, so the categories are not fetched
       const response = await getCategories();
       if (response.status === 200) {
         setCategories(response.data.categories);

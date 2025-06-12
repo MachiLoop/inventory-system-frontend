@@ -6,6 +6,7 @@ import { View, Text } from "react-native";
 import { ToastProvider } from "react-native-toast-notifications";
 import React from "react";
 import { AppProvider } from "../context/AppContexts";
+import { StatusBar } from "expo-status-bar";
 import "../global.css";
 
 SplashScreen.preventAutoHideAsync();
@@ -51,6 +52,7 @@ const RootLayout = () => {
             }}
           />
         </Stack>
+        <StatusBar style="dark" backgroundColor="#fff" />
       </ToastProvider>
     </AppProvider>
   );

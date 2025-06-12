@@ -24,7 +24,7 @@ import { useFocusEffect } from "expo-router";
 import CategoryFormModal from "../../components/categoryFormModal";
 import { AppContext } from "../../context/AppContexts";
 
-const categories = () => {
+const Categories = () => {
   const [searchTerm, setSearchTerm] = useState("");
   // const [categories, setCategories] = useState([]);
   const {
@@ -37,6 +37,8 @@ const categories = () => {
   // const [loading, setLoading] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
   const [editingCategory, setEditingCategory] = useState(null);
+
+  console.log(categories);
 
   const router = useRouter();
 
@@ -136,6 +138,6 @@ const categories = () => {
   );
 };
 
-export default categories;
+export default Categories;
 
 const styles = StyleSheet.create({});

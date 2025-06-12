@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 
-const notifications = () => {
+const Notifications = () => {
   return (
     <View>
       <Text>notifications</Text>
@@ -9,6 +9,6 @@ const notifications = () => {
   );
 };
 
-export default notifications;
+export default Notifications;
 
 const styles = StyleSheet.create({});
