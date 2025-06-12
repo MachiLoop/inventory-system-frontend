@@ -152,12 +152,17 @@ const Product = () => {
               <View key={group.categoryId || index} className="mb-2">
                 <TouchableOpacity
                   onPress={() => toggleExpand(index)}
-                  className="flex flex-row  justify-between items-center"
+                  className="flex flex-row bg-gray-50 rounded-md p-3 justify-between items-center mb-3"
                 >
-                  <Text className="text-xl capitalize flex-1 font-psemibold">
+                  <Text className="text-lg capitalize flex-1 font-psemibold">
                     {group.category}
                   </Text>
-                  <Text>{group.expanded ? "▲" : "▼"}</Text>
+                  {/* <Text>{group.expanded ? "▲" : "▼"}</Text> */}
+                  {group.expanded ? (
+                    <Image source={icons.upCaret} className="w-4 h-4" />
+                  ) : (
+                    <Image source={icons.downCaret} className="w-4 h-4" />
+                  )}
                 </TouchableOpacity>
 
                 {group.expanded && (

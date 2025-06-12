@@ -6,7 +6,7 @@ const ProductItemCard = ({ item, handleEditProduct }) => {
   return (
     <View
       style={styles.productCard}
-      className=" mb-4 border-2 border-gray-100 pb-2 justify-between rounded-xl
+      className=" mb-4 border-2 border-gray-100 pb-2 justify-between rounded-md
       "
     >
       <View className="mb-1">
@@ -15,8 +15,10 @@ const ProductItemCard = ({ item, handleEditProduct }) => {
           style={styles.logo}
           resizeMode="cover"
         />
-        <View className="px-2">
-          <Text className="capitalize font-psemibold">{item.name}</Text>
+        <View className="px-2 mt-2">
+          <Text className="capitalize font-psemibold text-center text-base">
+            {item.name}
+          </Text>
           <View className="mb-2">
             <Text>Qty: {item.quantity}</Text>
             {item.weight && <Text>Weight: {item.weight}</Text>}
@@ -48,6 +50,7 @@ const styles = StyleSheet.create({
   },
   productCard: {
     width: "48%",
+    boxShadow: "0px 0px 10px 0px rgba(0, 0, 0, 0.1)",
   },
 });
 
