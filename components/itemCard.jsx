@@ -5,7 +5,7 @@ import React from "react";
 // const placeholderImage =
 //   "https://media.istockphoto.com/id/1360261804/vector/no-image-photo-template-on-gray-background.jpg?s=612x612&w=0&k=20&c=jR8gH9OmiRzSKZ3bIXsVfh161iuOrjfhqDpHTlTRFr4=";
 
-const ItemCard = ({ item, handleEditCategory }) => {
+const ItemCard = ({ item, handleEditCategory, handleDeleteCategory }) => {
   return (
     <View className="flex-row justify-between items-center bg-gray-50 mb-4 p-2 gap-4 rounded-lg mx-2">
       <View className=" gap-2 flex-1">
@@ -20,7 +20,7 @@ const ItemCard = ({ item, handleEditCategory }) => {
         <TouchableOpacity onPress={() => handleEditCategory(item)}>
           <Image source={icons.edit} className="w-6 h-6" tintColor="black" />
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => handleDeleteCategory(item)}>
           <Image
             source={icons.deleteIcon}
             className="w-6 h-6"

@@ -16,6 +16,7 @@ import TextInputForm from "../../components/TextInputForm";
 import CustomButton from "../../components/customButton";
 import {
   addCategory,
+  deleteCategory,
   editCategory,
   getCategories,
 } from "../../utils/customFunctions/database";
@@ -23,8 +24,11 @@ import ItemCard from "../../components/itemCard";
 import { useFocusEffect } from "expo-router";
 import CategoryFormModal from "../../components/categoryFormModal";
 import { AppContext } from "../../context/AppContexts";
+import DeleteModal from "../../components/deleteModal";
+import useToastNotification from "../../utils/customHooks/useToastNotification";
 
 const Categories = () => {
+  const showToast = useToastNotification();
   const [searchTerm, setSearchTerm] = useState("");
   // const [categories, setCategories] = useState([]);
   const {
@@ -36,7 +40,9 @@ const Categories = () => {
   } = useContext(AppContext);
   // const [loading, setLoading] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
+  const [deleteModalVisible, setDeleteModalVisible] = useState(false);
   const [editingCategory, setEditingCategory] = useState(null);
+  const [deletingCategory, setDeletingCategory] = useState(null);
 
   console.log(categories);
 
@@ -78,12 +84,39 @@ const Categories = () => {
     setModalVisible(true);
   };
 
+  const handleDeleteCategory = (category) => {
+    setDeletingCategory(category);
+    setDeleteModalVisible(true);
+  };
+
+  const deleteCategoryHandler = async () => {
+    const response = await deleteCategory(deletingCategory._id);
+
+    // console.log(response.data);
+    // console.log(response.status);
+
+    // console.log("data: " + response.data.categories[1].name);
+
+    if (response.status == 200) {
+      console.log("successful");
+      await fetchCategories();
+      showToast(response.data.message, "success");
+    } else {
+      showToast(response.data.message || "Failed to delete category", "danger");
+    }
+    setDeleteModalVisible(false);
+  };
+
   const filteredCategories = categories.filter((category) =>
     category.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   const renderCategory = ({ item }) => (
-    <ItemCard item={item} handleEditCategory={handleEditCategory} />
+    <ItemCard
+      item={item}
+      handleEditCategory={handleEditCategory}
+      handleDeleteCategory={handleDeleteCategory}
+    />
   );
 
   return (
@@ -131,6 +164,12 @@ const Categories = () => {
             onClose={() => setModalVisible(false)}
             handleFormSubmit={handleFormSubmit}
             editingCategory={editingCategory}
+          />
+          <DeleteModal
+            visible={deleteModalVisible}
+            onClose={() => setDeleteModalVisible(false)}
+            itemType="category"
+            deleteHandler={deleteCategoryHandler}
           />
         </View>
       )}
