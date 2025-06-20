@@ -2,7 +2,7 @@ import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
 import { icons, images } from "../constants";
 import React from "react";
 
-const ProductItemCard = ({ item, handleEditProduct }) => {
+const ProductItemCard = ({ item, handleEditProduct, handleDeleteProduct }) => {
   return (
     <View
       style={styles.productCard}
@@ -28,7 +28,7 @@ const ProductItemCard = ({ item, handleEditProduct }) => {
         </View>
       </View>
       <View className="flex-row justify-center gap-6 items-center">
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => handleDeleteProduct(item)}>
           <Image
             source={icons.deleteIcon}
             className="w-4 h-4"

@@ -1,7 +1,7 @@
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const base_url = "http://192.168.143.20:8080";
+const base_url = "http://192.168.9.20:8080";
 
 export const loginUser = async (email, password) => {
   let response;
@@ -182,6 +182,26 @@ export const deleteCategory = async (categoryId) => {
 
   try {
     response = await axios.delete(`${base_url}/category/delete/${categoryId}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    // console.log(response);
+
+    return response;
+  } catch (error) {
+    return error.response;
+  }
+};
+
+export const deleteProduct = async (productId) => {
+  const token = await AsyncStorage.getItem("authToken");
+
+  let response;
+
+  try {
+    response = await axios.delete(`${base_url}/product/delete/${productId}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

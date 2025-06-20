@@ -15,21 +15,27 @@ import TextInputForm from "../../components/TextInputForm";
 import CustomButton from "../../components/customButton";
 import {
   addProduct,
+  deleteProduct,
   editProduct,
   getProducts,
 } from "../../utils/customFunctions/database";
 import ProductItemCard from "../../components/productItemCard";
 import { useFocusEffect } from "expo-router";
 import ProductFormModal from "../../components/productFormModal";
+import DeleteModal from "../../components/deleteModal";
+import useToastNotification from "../../utils/customHooks/useToastNotification";
 
 const Product = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [groupedProducts, setGroupedProducts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
+  const [deleteModalVisible, setDeleteModalVisible] = useState(false);
   const [editingProduct, setEditingProduct] = useState(null);
+  const [deletingProduct, setDeletingProduct] = useState(null);
 
   const router = useRouter();
+  const showToast = useToastNotification();
 
   const fetchProducts = async () => {
     setLoading(true);
@@ -98,6 +104,26 @@ const Product = () => {
     setModalVisible(true);
   };
 
+  const handleDeleteProduct = (product) => {
+    setDeletingProduct(product);
+    setDeleteModalVisible(true);
+  };
+
+  const deleteProductHandler = async () => {
+    setDeleteModalVisible(false);
+    const response = await deleteProduct(deletingProduct._id);
+
+    if (response.status === 200) {
+      console.log("successful");
+      await fetchProducts();
+      showToast(response.data.message, "success");
+    } else {
+      showToast(response.data.message || "Failed to delete product", "danger");
+    }
+
+    setDeletingProduct(null);
+  };
+
   // useEffect(() => {
   //   fetchTrips();
   // }, []);
@@ -118,7 +144,11 @@ const Product = () => {
   };
 
   const renderProduct = ({ item }) => (
-    <ProductItemCard item={item} handleEditProduct={handleEditProduct} />
+    <ProductItemCard
+      item={item}
+      handleEditProduct={handleEditProduct}
+      handleDeleteProduct={handleDeleteProduct}
+    />
   );
 
   return (
@@ -194,6 +224,12 @@ const Product = () => {
             onClose={() => setModalVisible(false)}
             handleFormSubmit={handleFormSubmit}
             editingProduct={editingProduct}
+          />
+          <DeleteModal
+            visible={deleteModalVisible}
+            onClose={() => setDeleteModalVisible(false)}
+            itemType="Product"
+            deleteHandler={deleteProductHandler}
           />
           {/* </View> */}
         </View>

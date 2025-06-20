@@ -90,21 +90,18 @@ const Categories = () => {
   };
 
   const deleteCategoryHandler = async () => {
+    setDeleteModalVisible(false); // ✅ Hide modal immediately
     const response = await deleteCategory(deletingCategory._id);
 
-    // console.log(response.data);
-    // console.log(response.status);
-
-    // console.log("data: " + response.data.categories[1].name);
-
-    if (response.status == 200) {
+    if (response.status === 200) {
       console.log("successful");
       await fetchCategories();
       showToast(response.data.message, "success");
     } else {
       showToast(response.data.message || "Failed to delete category", "danger");
     }
-    setDeleteModalVisible(false);
+
+    setDeletingCategory(null); // ✅ Optional: clean up
   };
 
   const filteredCategories = categories.filter((category) =>
