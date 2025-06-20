@@ -133,9 +133,27 @@ const Product = () => {
     }, [])
   );
 
-  // const filteredProducts = products.filter((product) =>
-  //   product.name.toLowerCase().includes(searchTerm.toLowerCase())
-  // );
+  const filteredGroupedProducts = groupedProducts
+    .map((group) => {
+      const matchesCategory = group.category
+        .toLowerCase()
+        .includes(searchTerm.toLowerCase());
+
+      const filteredProducts = group.products.filter((product) =>
+        product.name.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+
+      if (matchesCategory || filteredProducts.length > 0) {
+        return {
+          ...group,
+          expanded: searchTerm.length > 0 ? true : group.expanded,
+          products: matchesCategory ? group.products : filteredProducts,
+        };
+      }
+
+      return null;
+    })
+    .filter((group) => group !== null);
 
   const toggleExpand = (index) => {
     const updated = [...groupedProducts];
@@ -178,7 +196,7 @@ const Product = () => {
             style={{ flex: 1 }}
             showsVerticalScrollIndicator={false}
           >
-            {groupedProducts.map((group, index) => (
+            {filteredGroupedProducts.map((group, index) => (
               <View key={group.categoryId || index} className="mb-2">
                 <TouchableOpacity
                   onPress={() => toggleExpand(index)}
